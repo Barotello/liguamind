@@ -2,14 +2,18 @@
 import { GoogleGenAI, Type, Modality } from "@google/genai";
 import { WritingFeedback, ExamType } from "../types";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+// Use VITE_ prefix for client-side env vars
+const API_KEY = import.meta.env.VITE_GEMINI_API_KEY || '';
+// Initialize conditionally or with a dummy key to prevent immediate crash during build/start
+// Actual calls will still fail if key is missing, but app won't crash on load.
+const ai = new GoogleGenAI({ apiKey: API_KEY || 'PLACEHOLDER_KEY_FOR_BUILD' });
 
 /**
  * Service for Writing Assistance
  */
 export const gradeWritingEssay = async (
-  essay: string, 
-  prompt: string, 
+  essay: string,
+  prompt: string,
   examType: ExamType
 ): Promise<WritingFeedback> => {
   const response = await ai.models.generateContent({
