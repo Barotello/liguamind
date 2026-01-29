@@ -1,0 +1,7 @@
+{
+  "name": "LinguaMind PRO",
+  "description": "A comprehensive IELTS and TOEFL preparation platform featuring AI-powered speaking examiners and writing assistants with real-time feedback and glassmorphism UI.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
